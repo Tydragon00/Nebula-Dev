@@ -63,6 +63,16 @@ class BluetoothDeviceInfoWidget extends StatelessWidget {
               ],
             ),
           ),
+          Positioned(
+            bottom: 8.0,
+            right: 8.0,
+            child: IconButton(
+              onPressed: () {
+                print("object");
+              },
+              icon: Icon(Icons.screenshot_rounded, size: 32.0),
+            ),
+          ),
           Visibility(
             visible: controller.myDevice.value.isConnected,
             child: Positioned(
