@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.twodragonsdev.nebula">
 
-    <!-- Allow Bluetooth -->
+
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+    <uses-permission android:name=" android.permission.POST_NOTIFICATIONS" android:required="true" />
 
     <!-- New Bluetooth permissions in Android 12
      https://developer.android.com/about/versions/12/features/bluetooth-permissions -->
