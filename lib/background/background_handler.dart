@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:Nebula/connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
+import 'package:get/get.dart';
 
+import '../controllers/device_controller.dart';
 import '../main.dart';
 import '../permission_helper.dart';
 
@@ -15,7 +18,9 @@ class BackgroundHandler extends TaskHandler {
     final customData =
         await FlutterForegroundTask.getData<String>(key: 'customData');
     print('customData: $customData');
-    main();
+    ApplicationController controller = ApplicationController();
+    Get.put(controller);
+    connectToDevice();
   }
 
   @override
@@ -23,6 +28,8 @@ class BackgroundHandler extends TaskHandler {
     FlutterForegroundTask.updateService(
       notificationTitle: 'MyTaskHandler',
     );
+
+    _sendPort?.send('SONO UN MESSAGIO DAL BACKGROUND');
     //TODO Listen for connection
     // main();
   }
@@ -140,7 +147,8 @@ class BackGroundNotificationState extends State<BackGroundNotification> {
   }
 
   Future<bool> _startForegroundTask() async {
-    await FlutterForegroundTask.saveData(key: 'customData', value: 'hello');
+    await FlutterForegroundTask.saveData(
+        key: 'customData', value: 'SOLGALEOOOOOOO');
     final ReceivePort? receivePort = FlutterForegroundTask.receivePort;
     final bool isRegistered = _registerReceivePort(receivePort);
     if (!isRegistered) {
