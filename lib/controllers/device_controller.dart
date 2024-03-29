@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
@@ -115,7 +114,7 @@ class ApplicationController extends GetxController {
   };
 
   final Rx<BluetoothCharacteristic?> pushNotificationsService =
-      (null as BluetoothCharacteristic?).obs;
+      (null).obs;
 
   void setDevice(BluetoothDevice device) {
     myDevice.value = device;
