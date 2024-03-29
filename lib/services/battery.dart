@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:get/get.dart';
 
 import '../controllers/device_controller.dart';
@@ -19,5 +20,8 @@ Future<void> batteryService(BluetoothService batteryService) async {
   await batteryCharacteristic.lastValueStream.listen((event) {
     List<int> battery = event;
     controller.setDeviceInfoBattery(battery[0]);
+    FlutterForegroundTask.saveData(
+        key: 'myBattery',
+        value: controller.myDeviceInfo.value.batteryPercentage);
   });
 }

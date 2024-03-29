@@ -32,17 +32,17 @@ class BluetoothDeviceInfoWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      'Identifier: ${controller.myDevice.value.remoteId}',
+                      'Identifier: ${controller.myDeviceInfo.value.uuid}',
                       style: TextStyle(fontSize: 16.0),
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      controller.myDevice.value.isConnected
+                      controller.myDeviceInfo.value.isConnected
                           ? 'Connected'
                           : 'Not Connected',
                       style: TextStyle(
                         fontSize: 16.0,
-                        color: controller.myDevice.value.isConnected
+                        color: controller.myDeviceInfo.value.isConnected
                             ? Colors.green
                             : Colors.red,
                       ),

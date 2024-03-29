@@ -50,8 +50,9 @@ class _InfoPageState extends State<InfoPage> {
   @override
   void initState() {
     super.initState();
+    //TODO
+    //  FlutterForegroundTask.clearAllData();
     Timer.periodic(Duration(milliseconds: 1000), (timer) {
-      // Chiama la funzione che vuoi eseguire ogni secondo
       getMyData();
     });
   }

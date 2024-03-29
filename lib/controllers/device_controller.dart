@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
 
@@ -9,7 +11,7 @@ class ApplicationController extends GetxController {
 
   Rx<SmartwatchDeviceInfo> myDeviceInfo = SmartwatchDeviceInfo(
     deviceName: '',
-    deviceAddress: '',
+    uuid: '',
     isConnected: false,
     batteryPercentage: 0,
   ).obs;
@@ -130,7 +132,16 @@ class ApplicationController extends GetxController {
   void setDeviceInfoName(String deviceInfoName) {
     myDeviceInfo.value = SmartwatchDeviceInfo(
       deviceName: deviceInfoName,
-      deviceAddress: myDeviceInfo.value.deviceAddress,
+      uuid: myDeviceInfo.value.uuid,
+      isConnected: myDeviceInfo.value.isConnected,
+      batteryPercentage: myDeviceInfo.value.batteryPercentage,
+    );
+  }
+
+  void setDeviceInfoAddress(String deviceInfoAddress) {
+    myDeviceInfo.value = SmartwatchDeviceInfo(
+      deviceName: myDeviceInfo.value.uuid,
+      uuid: deviceInfoAddress,
       isConnected: myDeviceInfo.value.isConnected,
       batteryPercentage: myDeviceInfo.value.batteryPercentage,
     );
@@ -139,9 +150,18 @@ class ApplicationController extends GetxController {
   void setDeviceInfoBattery(int batteryPercentage) {
     myDeviceInfo.value = SmartwatchDeviceInfo(
       deviceName: myDeviceInfo.value.deviceName,
-      deviceAddress: myDeviceInfo.value.deviceAddress,
+      uuid: myDeviceInfo.value.uuid,
       isConnected: myDeviceInfo.value.isConnected,
       batteryPercentage: batteryPercentage,
+    );
+  }
+
+  void setDeviceInfoIsConnected(bool deviceInfoIsConnected) {
+    myDeviceInfo.value = SmartwatchDeviceInfo(
+      deviceName: myDeviceInfo.value.deviceName,
+      uuid: myDeviceInfo.value.uuid,
+      isConnected: deviceInfoIsConnected,
+      batteryPercentage: myDeviceInfo.value.batteryPercentage,
     );
   }
 

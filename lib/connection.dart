@@ -37,10 +37,13 @@ Future<void> connectToDevice() async {
         controller.myDevice.value = controller.myDevice.value;
       }); */
 
-      await FlutterForegroundTask.saveData(key: 'secondo', value: 'LUNALAAAAA');
+      FlutterForegroundTask.saveData(key: 'uuid', value: uuid);
 
-      await FlutterForegroundTask.saveData(
-          key: 'myDevice', value: controller.myDevice.value);
+      FlutterForegroundTask.saveData(
+          key: 'deviceName', value: controller.myDeviceInfo.value.deviceName);
+
+      FlutterForegroundTask.saveData(key: 'isConnected', value: true);
+
       initServices();
     } else {
       Snackbar.show(ABC.c, "UUID or Device Name is empty", success: false);
@@ -52,6 +55,13 @@ Future<void> connectToDevice() async {
 }
 
 Future<void> getMyData() async {
+  final ApplicationController controller = Get.find();
   final Map<String, Object> myData = await FlutterForegroundTask.getAllData();
-  print(myData);
+  int? myBattery = int.tryParse(myData["myBattery"].toString());
+  controller.setDeviceInfoBattery(myBattery!);
+
+  controller.setDeviceInfoAddress(myData["uuid"].toString());
+  controller.setDeviceInfoName(myData["deviceName"].toString());
+  controller
+      .setDeviceInfoIsConnected(bool.parse(myData["isConnected"].toString()));
 }
