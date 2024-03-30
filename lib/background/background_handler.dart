@@ -146,8 +146,6 @@ class BackGroundNotificationState extends State<BackGroundNotification> {
   }
 
   Future<bool> _startForegroundTask() async {
-    await FlutterForegroundTask.saveData(
-        key: 'customData', value: 'SOLGALEOOOOOOO');
     final ReceivePort? receivePort = FlutterForegroundTask.receivePort;
     final bool isRegistered = _registerReceivePort(receivePort);
     if (!isRegistered) {

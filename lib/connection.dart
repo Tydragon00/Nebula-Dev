@@ -53,11 +53,25 @@ Future<void> connectToDevice() async {
 Future<void> getMyData() async {
   final ApplicationController controller = Get.find();
   final Map<String, Object> myData = await FlutterForegroundTask.getAllData();
-  int? myBattery = int.tryParse(myData["myBattery"].toString());
-  controller.setDeviceInfoBattery(myBattery!);
 
-  controller.setDeviceInfoAddress(myData["uuid"].toString());
-  controller.setDeviceInfoName(myData["deviceName"].toString());
-  controller
-      .setDeviceInfoIsConnected(bool.parse(myData["isConnected"].toString()));
+  if (myData.length > 0) {
+    if (myData["myBattery"] != null) {
+      int? myBattery = int.tryParse(myData["myBattery"].toString());
+      if (myBattery != null) {
+        controller.setDeviceInfoBattery(myBattery);
+      }
+    }
+    if (myData["uuid"] != null) {
+      controller.setDeviceInfoAddress(myData["uuid"].toString());
+    }
+
+    if (myData["uuid"] != null) {
+      controller.setDeviceInfoName(myData["deviceName"].toString());
+    }
+
+    if (myData["isConnected"] != null) {
+      controller.setDeviceInfoIsConnected(
+          bool.parse(myData["isConnected"].toString()));
+    }
+  }
 }

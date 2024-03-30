@@ -1,4 +1,3 @@
-
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
 
@@ -113,8 +112,12 @@ class ApplicationController extends GetxController {
     "xyz.nextalone.nagram": "ios-paper-plane",
   };
 
-  final Rx<BluetoothCharacteristic?> pushNotificationsService =
-      (null).obs;
+  final Rx<BluetoothCharacteristic> pushNotificationsService =
+      BluetoothCharacteristic(
+              remoteId: DeviceIdentifier(""),
+              serviceUuid: Guid(""),
+              characteristicUuid: Guid(""))
+          .obs;
 
   void setDevice(BluetoothDevice device) {
     myDevice.value = device;
