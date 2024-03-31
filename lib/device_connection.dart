@@ -10,8 +10,10 @@ import 'utils/snackbar.dart';
 import 'widgets/smartwatch_info.dart';
 import 'package:get/get.dart';
 
-Future<void> connectToDevice() async {
-  final ApplicationController controller = Get.find();
+Future<void> connectToDevice(ApplicationController controller) async {
+  ApplicationController controller = ApplicationController();
+  Get.put(controller);
+
   bool isPermissionGranted =
       await NotificationListenerService.isPermissionGranted();
 
@@ -20,9 +22,12 @@ Future<void> connectToDevice() async {
   }
 
   try {
-    final prefs = await SharedPreferences.getInstance();
-    final uuid = prefs.getString('uuid') ?? "";
-    final deviceName = prefs.getString('deviceName') ?? "";
+    //final prefs = await SharedPreferences.getInstance();
+    // final uuid = prefs.getString('uuid') ?? "";
+    //final deviceName = prefs.getString('deviceName') ?? "";
+
+    final uuid = "98:28:a6:e8:02:0d";
+    final deviceName = "mioDevice";
 
     if (uuid.isNotEmpty && deviceName.isNotEmpty) {
       controller.setDeviceInfoName(deviceName);
