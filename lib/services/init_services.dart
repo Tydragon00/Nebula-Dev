@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:Nebula/services/find_my_phone.dart';
 import 'package:Nebula/services/notification.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,10 @@ Future<void> initServices() async {
     }
     if (serviceId == "0x00009071-0000-0000-0000-00a57e401d05") {
       notificationService(element);
+    }
+    //FIXME media service ,replace
+    if (serviceId == "0x00007071-0000-0000-0000-00a57e401d05") {
+      findMyPhoneService(element);
     }
   });
 }
